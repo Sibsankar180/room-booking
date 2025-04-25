@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createUser, findUserByEmail } = require("c:\\Users\\sibsa\\Desktop\\room\\room-bookin\\models\\userModel");
+const { createUser, findUserByEmail } = require("./models/userModel.js");
 
 const registerUser = (req, res) => {
   const { name, email, password } = req.body;
