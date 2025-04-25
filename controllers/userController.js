@@ -34,9 +34,11 @@ const loginUser = (req, res) => {
       const token = jwt.sign({ id: user.id, email: user.email }, 'your_jwt_secret', {
         expiresIn: '1h',
       });
+
       res.json({ message: 'Login successful', token });
     });
   });
 };
+
 
 module.exports = { registerUser, loginUser };
