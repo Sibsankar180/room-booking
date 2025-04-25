@@ -1,7 +1,7 @@
 const express =require('express');
 const cors = require("cors");
-const db = require("./config/db");
-const userRoutes = require('./routes/userRoutes');
+const db = require("./config/db.js");
+const userRoutes = require('c:\\Users\\sibsa\\Desktop\\room\\room-booking\\routes\\userRoutes.js');
 
 const app = express();
 app.use(cors());

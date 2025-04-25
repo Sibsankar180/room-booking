@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser } = require('../controllers/userController');
+const { registerUser, loginUser } = require('c:\\Users\\sibsa\\Desktop\\room\\room-booking\\controllers\\userController.js');
 
 const router = express.Router();
 
