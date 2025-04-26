@@ -3,7 +3,7 @@ const {createBooking, getBookingsByUser, checkRoomAvailability}= require("../mod
 
 const bookRoom =(req,res) =>{
     const bookingData = req.body;
-    const {room_id,check_in,check_out} = bookingData;
+    const {user_id,room_id,check_in,check_out} = bookingData;
 
     checkRoomAvailability(room_id,check_in,check_out,(err,results) => {
 
