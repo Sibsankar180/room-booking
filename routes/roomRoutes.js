@@ -1,8 +1,8 @@
 const express = require("express");
-const { createRoom, getAllRooms, listRooms } = require("../controllers/roomController");
+const { createRoom,  listRooms } = require("../controllers/roomController.js");
 const router = express.Router();
 
-router.post("/",createRoom);
+router.post('/',createRoom);
 
 router.get('/',listRooms);
 

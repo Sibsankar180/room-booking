@@ -1,7 +1,7 @@
-const db = require("../config/db");
+const db = require("../config/db.js");
 
 const addRoom = (roomData,callback)=>{
-    const {title,description,price,location}=roomData;
+    const {title, description, price ,location } = roomData;
 
     const sql = 'insert into rooms(title,description,price,location) values(?,?,?,?)';
 
