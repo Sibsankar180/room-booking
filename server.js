@@ -2,8 +2,9 @@
 const express =require('express');
 const cors = require("cors");
 const db = require("./config/db.js");
-const userRoutes = require('./routes/userRoutes.js')
-const roomRoutes = require('./routes/roomRoutes.js')
+const userRoutes = require('./routes/userRoutes.js');
+const roomRoutes = require('./routes/roomRoutes.js');
+const bookingRoutes = require("./routes/bookingRoutes.js");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,5 +22,7 @@ app.listen(PORT,()=>{
 app.use('/api/users',userRoutes);
 
 app.use('/api/rooms',roomRoutes);
+
+app.use('/api/bookings',bookingRoutes);
 
 
