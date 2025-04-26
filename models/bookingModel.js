@@ -14,4 +14,10 @@ const getBookingsByUser = (user_id,callback) =>{
     db.query(sql,[user_id],callback);
 };
 
-module.exports = {createBooking, getBookingsByUser};
+const checkRoomAvailability = (room_id, check_in, check_out,callback) => {
+    const sql ='select * from bookings where room_id = ? and ( (check_in <= ? and check_out > ?) or (check_in < ? and check_out >= ?) or (check_in < ? and check_out >= ?))';
+    db.query(sql,[room_id,check_in,check_in,check_out,check_out,check_in,check_out],callback);
+}
+
+
+module.exports = {createBooking, getBookingsByUser, checkRoomAvailability };
