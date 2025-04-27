@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Find Your Room</h1>
+
+    <form id="searchForm">
+
+        <input type="text" id="location" placeholder="Location">
+
+        <input type="number" id="minPrice"  placeholder="Min Price">
+
+        <input type="number" id="maxPrice"  placeholder="Max Price">
+
+        <input type="date" id="checkIn">
+
+        <input type="date" id="checkOut">
+
+        <button type="submit">Search</button>
+
+    </form>
+
+    <div id="roomResults"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
