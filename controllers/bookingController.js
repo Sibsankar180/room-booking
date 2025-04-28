@@ -24,7 +24,7 @@ const bookRoom =(req,res) =>{
 
 };
 
-const getUserBookings = (req,res) =>{
+const getUserBookings = (req,res) => {
     const { user_id } = req.params;
 
     getBookingsByUser(user_id, (err,results) => {
