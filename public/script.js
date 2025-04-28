@@ -67,12 +67,17 @@
             check_in: checkIn,
             check_out: checkOut
           };
-
+        
+          // before use of "localStorage.getItem('token') , we need to add token explicity by 
+          // .setItem('key', 'value'); only at frontend not in backend.
+          // key and value must be string;
+          // each webBrower has localStoarage (like 5MB) at client site.
+          const token = localStorage.getItem('token');// localStorage.getItem(key);
           
 
           const response = await fetch('http://localhost:5000/api/bookings/', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' } ,
+            headers: { 'Content-Type': 'application/json' ,'Authorization':`Bearer ${token}`} ,
             body: JSON.stringify(bookingData)
         });
         
