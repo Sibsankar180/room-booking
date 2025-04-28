@@ -9,8 +9,7 @@
     const maxPrice = document.getElementById("maxPrice").value;
     const checkIn = document.getElementById("checkIn").value;
     const checkOut = document.getElementById("checkOut").value;
-
-    console.log(checkIn,checkOut);
+ 
     
 
     const res = await fetch(`http://localhost:5000/api/rooms/search?location=${location}&minPrice=${minPrice}&maxPrice=${maxPrice}&check_in=${checkIn}&check_out=${checkOut}`);
@@ -36,7 +35,7 @@
         div.innerHTML = `<h3> ${room.title}</h3> 
                <p>${room.description}</p> <p><strong> Price: </strong> ${room.price}</p> 
                <p> <strong> Location: </strong> ${room.location}</p> 
-               <button class=" book-btn " data-room-id = " ${room.id} ">Book Now </button> `;
+               <button class=" book-btn " data-room-id = " ${room.id}" data-room-title="${room.title}">Book Now </button> `;
 
         results.appendChild(div);
       
@@ -52,6 +51,8 @@
 
           const roomId = buttn.dataset.roomId;
           
+          const roomTitle = buttn.dataset.roomTitle;
+
           const checkIn = document.querySelector("#checkIn").value;
 
           const checkOut = document.querySelector("#checkOut").value;
@@ -77,7 +78,7 @@
         
 
             if(response.ok){
-                alert(`Booking succesful !`);//${roomTitle};
+                alert(`Booking succesful for ${roomTitle} !`);// you did it
             }else{
                 const errorMessage = await response.text();
                 alert(`Booking failed: ${errorMessage}`);
