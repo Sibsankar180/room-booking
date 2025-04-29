@@ -92,3 +92,83 @@
         });
     });
 });
+
+
+
+document.querySelector("#registerForm").addEventListener('submit' , async (event) => {
+
+ event.preventDefault();
+
+ const regUserName = document.querySelector("#regUserName").value;
+
+ const regUserEmail = document.querySelector("#regUserEmail").value;
+
+ const regUserPassword =  document.querySelector("#regUserPassword").value;
+
+ const regUserData = {
+    name: regUserName,
+    email: regUserEmail,
+    password:    regUserPassword
+ };
+
+ 
+
+ const response = await fetch('http://localhost:5000/api/users/register/', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json'},
+     body: JSON.stringify(regUserData)
+ });
+ 
+
+ if(response.ok){
+   alert('User Registered Successfully');
+ }else{
+  const errorMessage =  await response.text();
+  alert(`Registration failed: ${errorMessage}`);
+ }
+
+});
+
+
+document.querySelector("#loginForm").addEventListener('submit' , async (event) => {
+
+  event.preventDefault();
+ 
+   
+ 
+  const loginEmail = document.querySelector("#loginEmail").value;
+ 
+  const loginPassword =  document.querySelector("#loginPassword").value;
+ 
+  const loginData = {
+
+   email: loginEmail,
+   password: loginPassword
+
+  };
+ 
+  const response = await fetch('http://localhost:5000/api/users/login/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(loginData)
+  });
+  
+ 
+  if(response.ok){
+
+   const { token }  = await response.json();
+   // store token into 'localStorage'
+
+   localStorage.setItem('token',token);
+   
+   alert("Login Successfull!!");
+
+  }else{
+   const errorMessage = await response.text();
+   alert(` Login failed: ${errorMessage}`);
+  }
+ 
+ });
+ 
+
+

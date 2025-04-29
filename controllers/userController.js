@@ -37,7 +37,7 @@ const loginUser = (req, res) => {
 
     
 
-      res.json({ message: 'Login successful', token });
+      res.json({ token });
         // add token into localStorage..
         // (( localStorage.setItem('token',token); )) // since , localStroge is part of browser , and this is backend , so we can't add this.
     });
