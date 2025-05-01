@@ -169,6 +169,40 @@ document.querySelector("#loginForm").addEventListener('submit' , async (event) =
   }
  
  });
+
+
+
+ document.querySelector( "#profileUpdateForm" ).addEventListener('submit', async (event)=> {
+    
+  event.preventDefault();
+
+  const updateName = document.querySelector("#updateName").value;
+
+  const updateEmail = document.querySelector('#updateEmail').value;
+
+  const updateData = {
+    name: updateName,
+    email: updateEmail
+  }
+
+   
+   const token =  localStorage.getItem('token');
+
+  const response = await fetch('http://localhost:5000/api/users/profile',{
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+    body: JSON.stringify(updateData)
+  });
+
+  if(response.ok){
+    alert('Profile update Succesfully');
+  }else{
+    const errorMessage = await response.text();
+    alert(`Profile update Failed: ${errorMessage}`);
+  }
+
+
+ });
  
 
 

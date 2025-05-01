@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createUser, findUserByEmail } = require("../models/userModel.js");
+const { createUser, findUserByEmail ,updateUserProfile } = require("../models/userModel.js");
 
 const registerUser = (req, res) => {
   const { name, email, password } = req.body;
@@ -45,4 +45,37 @@ const loginUser = (req, res) => {
 };
 
 
-module.exports = { registerUser, loginUser };
+const updateProfile = (req,res) =>{
+  
+  const userId = req.user.id; // get user id from the jwt token
+
+  const { name , email } = req.body;
+
+  updateUserProfile(userId,{ name , email } , ( err,result) =>{
+    if(err) return res.status(500).send("Porfile Update Failed!");
+
+    res.status(200).send("Profile Update Successfully");
+  });
+};
+
+
+const verifyToken = (req,res,next) => {
+
+  const token = req.headers['authorization']?.split(' ')[1]; // 
+
+  if(!token) return res.status(403).send('Token required');
+
+  jwt.verify( token ,'your_jwt_secret', (err,decoded) =>{
+    // jwt.verify() => verify token if it is right then , jwt gives user's info into "decoded ".
+    if(err) return res.status(401).send("Invalid token");
+
+    req.user = decoded; // store user'info in request, so that 'bookRoom' get this user properly.
+
+    next();  // move next controller or middleware, here it is bookRoom, because in routes after 'verifyToken' , 'bookRoom' is used'. Without next(); request will hang forever.
+
+  });
+
+};
+
+
+module.exports = { registerUser, loginUser , updateProfile ,verifyToken};

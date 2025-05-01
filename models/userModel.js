@@ -9,4 +9,16 @@ const findUserByEmail = (email,callback) =>{
     db.query(sql,[email],callback);
 };
 
-module.exports = {createUser,findUserByEmail};
+const updateUserProfile = ( userId, userData, callback) =>{
+    const { name, email} = userData;
+
+ if(name && email){
+
+    const sql = `update users set name = ? , email = ? where id = ?`;
+    db.query(sql,[name,email,userId],callback);
+
+  }
+   
+}
+
+module.exports = {createUser,findUserByEmail, updateUserProfile};
