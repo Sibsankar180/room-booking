@@ -201,8 +201,24 @@ document.querySelector("#loginForm").addEventListener('submit' , async (event) =
     alert(`Profile update Failed: ${errorMessage}`);
   }
 
+  const token1 = localStrorage.getItem('token');
+
+if(token1){
+  const response = await fetch('http://localhost:5000/api/users/profile',{
+    method: 'GET',
+    headers: { 'Authorization': `Bearer ${token1}`}
+  });
+
+  if(response.ok){
+    const user = await response.json();
+    
+    document.querySelector("#updateName").value = user.name;
+
+    document.querySelector("#updateEmail").value = user.email;
+
+  }
+}
+
 
  });
- 
-
-
+  

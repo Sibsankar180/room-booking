@@ -21,4 +21,12 @@ const updateUserProfile = ( userId, userData, callback) =>{
    
 }
 
-module.exports = {createUser,findUserByEmail, updateUserProfile};
+
+const getUserProfile = (userId,callback) =>{
+    const id = userId;
+
+    const sql = `select name,email from users where id = ?`;
+    db.query(sql,[id],callback);
+}
+
+module.exports = {createUser,findUserByEmail, updateUserProfile,getUserProfile};

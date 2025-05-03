@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createUser, findUserByEmail ,updateUserProfile } = require("../models/userModel.js");
+const { createUser, findUserByEmail ,updateUserProfile ,getUserProfile } = require("../models/userModel.js");
 
 const registerUser = (req, res) => {
   const { name, email, password } = req.body;
@@ -77,5 +77,14 @@ const verifyToken = (req,res,next) => {
 
 };
 
+const getProfile = (req,res) =>{
+  const userId = req.user.id;
 
-module.exports = { registerUser, loginUser , updateProfile ,verifyToken};
+  getUserProfile(userId,(err,results)=>{
+    if(err || results.length === 0) return res.status(404).send("User not Exist!");
+
+    res.json(results[0]);
+  });
+};
+
+module.exports = { registerUser, loginUser , updateProfile ,verifyToken, getProfile};
